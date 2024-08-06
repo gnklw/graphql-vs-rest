@@ -1,0 +1,504 @@
+// REST API
+
+### Author
+
+#### Create author
+POST http://localhost:8080/authors
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "birthdate": "1980-01-01",
+  "nationality": "American"
+}
+
+#### Get authors
+GET http://localhost:8080/authors
+
+#### Get author by ID
+GET http://localhost:8080/authors/1
+
+#### Update author
+PUT http://localhost:8080/authors/1
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "birthdate": "1980-01-01",
+  "nationality": "British"
+}
+
+#### Delete author
+DELETE http://localhost:8080/authors/1
+
+### Book
+
+#### Create book
+POST http://localhost:8080/books
+Content-Type: application/json
+
+{
+  "title": "My Book",
+  "publicationDate": "2023-01-01",
+  "genre": "Fiction",
+  "author": {
+    "id": 2
+  }
+}
+
+#### Get books
+GET http://localhost:8080/books
+
+#### Get book by ID
+GET http://localhost:8080/books/4
+
+#### Update book
+PUT http://localhost:8080/books/3
+Content-Type: application/json
+
+{
+  "title": "My Updated Book",
+  "publicationDate": "2023-01-01",
+  "genre": "Non-Fiction",
+  "author": {
+    "id": 3
+  }
+}
+
+#### Delete book
+DELETE http://localhost:8080/books/3
+
+### Publisher
+
+#### Create publisher
+POST http://localhost:8080/publishers
+Content-Type: application/json
+
+{
+  "name": "Best Publisher",
+  "address": "123 Street, City",
+  "contact": "contact@publisher.com"
+}
+
+#### Get publishers
+GET http://localhost:8080/publishers
+
+#### Get publisher by ID
+GET http://localhost:8080/publishers/1
+
+#### Update publisher
+PUT http://localhost:8080/publishers/1
+Content-Type: application/json
+
+{
+  "name": "Best Publisher Updated",
+  "address": "456 Avenue, City",
+  "contact": "newcontact@publisher.com"
+}
+
+#### Delete publisher
+DELETE http://localhost:8080/publishers/1
+
+### Review
+
+#### Create review
+POST http://localhost:8080/reviews
+Content-Type: application/json
+
+{
+  "reviewerName": "Jane Doe",
+  "rating": 5,
+  "comments": "Great book!",
+  "book": {
+    "id": 2
+  }
+}
+
+#### Get reviews
+GET http://localhost:8080/reviews
+
+#### Get review by ID
+GET http://localhost:8080/reviews/2
+
+#### Update review
+PUT http://localhost:8080/reviews/7
+Content-Type: application/json
+
+{
+  "reviewerName": "Jane Doe",
+  "rating": 4,
+  "comments": "Good book",
+  "book": {
+    "id": 7
+  }
+}
+
+#### Delete review
+DELETE http://localhost:8080/reviews/2
+
+### Award
+
+#### Create award
+POST http://localhost:8080/awards
+Content-Type: application/json
+
+{
+  "name": "Best Author Award",
+  "year": 2023,
+  "author": {
+    "id": 2
+  }
+}
+
+#### Get awards
+GET http://localhost:8080/awards
+
+#### Get award by ID
+GET http://localhost:8080/awards/2
+
+#### Update award
+PUT http://localhost:8080/awards/3
+Content-Type: application/json
+
+{
+  "name": "Best Author Award Updated",
+  "year": 2023,
+  "author": {
+    "id": 3
+  }
+}
+
+#### Delete award
+DELETE http://localhost:8080/awards/2
+
+//****************************************************************************************************
+// GraphQL API
+
+### Author
+
+#### Create author
+GRAPHQL http://localhost:8080/graphql
+
+mutation {
+  createAuthor(name: "John Doe", birthdate: "1980-01-01", nationality: "American") {
+    id
+    name
+    birthdate
+    nationality
+  }
+}
+
+#### Get authors
+GRAPHQL http://localhost:8080/graphql
+
+query {
+  allAuthors {
+    id
+    name
+    birthdate
+    nationality
+  }
+}
+
+#### Get author by ID
+GRAPHQL http://localhost:8080/graphql
+
+query {
+  authorById(id: 1) {
+    id
+    name
+    birthdate
+    nationality
+  }
+}
+
+#### Update author
+GRAPHQL http://localhost:8080/graphql
+
+mutation {
+  updateAuthor(id: 1, name: "John Doe Updated", birthdate: "1980-01-01", nationality: "British") {
+    id
+    name
+    birthdate
+    nationality
+  }
+}
+
+#### Delete author
+GRAPHQL http://localhost:8080/graphql
+
+mutation {
+  deleteAuthor(id: 1)
+}
+
+### Book
+
+#### Create book
+GRAPHQL http://localhost:8080/graphql
+
+mutation {
+  createBook(title: "My Book", publicationDate: "2023-01-01", genre: "Fiction", authorId: 2) {
+    id
+    title
+    publicationDate
+    genre
+    author {
+      id
+      name
+    }
+  }
+}
+
+#### Get books
+GRAPHQL http://localhost:8080/graphql
+
+query {
+  allBooks {
+    id
+    title
+    publicationDate
+    genre
+    author {
+      id
+      name
+    }
+  }
+}
+
+#### Get book by ID
+GRAPHQL http://localhost:8080/graphql
+
+query {
+  bookById(id: 2) {
+    id
+    title
+    publicationDate
+    genre
+    author {
+      id
+      name
+    }
+  }
+}
+
+#### Update book
+GRAPHQL http://localhost:8080/graphql
+
+mutation {
+  updateBook(id: 2, title: "My Updated Book", publicationDate: "2023-01-01", genre: "Non-Fiction", authorId: 2) {
+    id
+    title
+    publicationDate
+    genre
+    author {
+      id
+      name
+    }
+  }
+}
+
+#### Delete book
+GRAPHQL http://localhost:8080/graphql
+
+mutation {
+  deleteBook(id: 2)
+}
+
+### Publisher
+
+#### Create publisher
+GRAPHQL http://localhost:8080/graphql
+
+mutation {
+  createPublisher(name: "Best Publisher", address: "123 Street, City", contact: "contact@publisher.com") {
+    id
+    name
+    address
+    contact
+  }
+}
+
+#### Get publishers
+GRAPHQL http://localhost:8080/graphql
+
+query {
+  allPublishers {
+    id
+    name
+    address
+    contact
+  }
+}
+
+#### Get publisher by ID
+GRAPHQL http://localhost:8080/graphql
+
+query {
+  publisherById(id: 1) {
+    id
+    name
+    address
+    contact
+  }
+}
+
+#### Update publisher
+GRAPHQL http://localhost:8080/graphql
+
+mutation {
+  updatePublisher(id: 1, name: "Best Publisher Updated", address: "456 Avenue, City", contact: "newcontact@publisher.com") {
+    id
+    name
+    address
+    contact
+  }
+}
+
+#### Delete publisher
+GRAPHQL http://localhost:8080/graphql
+
+mutation {
+  deletePublisher(id: 1)
+}
+
+### Review
+
+#### Create review
+GRAPHQL http://localhost:8080/graphql
+
+mutation {
+  createReview(reviewerName: "Jane Doe", rating: 5, comments: "Great book!", bookId: 3) {
+    id
+    reviewerName
+    rating
+    comments
+    book {
+      id
+      title
+    }
+  }
+}
+
+#### Get reviews
+GRAPHQL http://localhost:8080/graphql
+
+query {
+  allReviews {
+    id
+    reviewerName
+    rating
+    comments
+    book {
+      id
+      title
+    }
+  }
+}
+
+#### Get review by ID
+GRAPHQL http://localhost:8080/graphql
+
+query {
+  reviewById(id: 3) {
+    id
+    reviewerName
+    rating
+    comments
+    book {
+      id
+      title
+    }
+  }
+}
+
+#### Update review
+GRAPHQL http://localhost:8080/graphql
+
+mutation {
+  updateReview(id: 4, reviewerName: "Jane Doe Updated", rating: 4, comments: "Good book", bookId: 4) {
+    id
+    reviewerName
+    rating
+    comments
+    book {
+      id
+      title
+    }
+  }
+}
+
+#### Delete review
+GRAPHQL http://localhost:8080/graphql
+
+mutation {
+  deleteReview(id: 7)
+}
+
+### Award
+
+#### Create award
+GRAPHQL http://localhost:8080/graphql
+
+mutation {
+  createAward(name: "Best Author Award", year: 2023, authorId: 4) {
+    id
+    name
+    year
+    author {
+      id
+      name
+    }
+  }
+}
+
+#### Get awards
+GRAPHQL http://localhost:8080/graphql
+
+query {
+  allAwards {
+    id
+    name
+    year
+    author {
+      id
+      name
+    }
+  }
+}
+
+#### Get award by ID
+GRAPHQL http://localhost:8080/graphql
+
+query {
+  awardById(id: 2) {
+    id
+    name
+    year
+    author {
+      id
+      name
+    }
+  }
+}
+
+#### Update award
+GRAPHQL http://localhost:8080/graphql
+
+mutation {
+  updateAward(id: 3, name: "Best Author Award Updated", year: 2023, authorId: 3) {
+    id
+    name
+    year
+    author {
+      id
+      name
+    }
+  }
+}
+
+#### Delete award
+GRAPHQL http://localhost:8080/graphql
+
+mutation {
+  deleteAward(id: 3)
+}

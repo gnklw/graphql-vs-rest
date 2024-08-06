@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: graphql-vs-rest
+  datasource:
+    url: jdbc:postgresql://localhost:5432/books
+    username: postgres
+    password: 12345
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    #defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
